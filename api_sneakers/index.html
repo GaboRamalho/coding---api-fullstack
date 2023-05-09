@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <title>Sneakers CRUD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>navigator.serviceWorker.register("service-worker.js")</script>
   <link rel="manifest" href="manifest.json" />
+  <link rel="serviceWorker" href="service-worker.js">
   <link rel="stylesheet" type="text/css" href="style.css" />
 
   <!--Coisa do Lighthouse-->
@@ -48,20 +48,20 @@
       </div>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-      <script src="scripts-api/criar.js"></script>
-    <!-- 
+    <!-- <script src="scripts-api/criar.js"></script> -->
+    
       <script>
         const form = document.querySelector('form');
-        const button = document.querySelector('#cadastro-button');
+        const button = document.querySelector('#submit-button');
 
         button.addEventListener('click', (event) => {
           event.preventDefault();
 
-          const nome = document.querySelector('#nome_cad').value;
-          const email = document.querySelector('#email_cad').value;
-          const senha = document.querySelector('#senha_cad').value;
+          const nome = document.querySelector('#name').value;
+          const brand = document.querySelector('#brand').value;
+          const size = document.querySelector('#size').value;
 
-          axios.post('http://localhost:5000/cadastro', { nome, email, senha })
+          axios.post('http://localhost:3000/sneaker/add', { nome, brand, size })
             .then(response => {
               console.log(response.data);
               alert('Dados enviados com sucesso!');
@@ -72,8 +72,22 @@
             });
         });
       </script>
-    -->  
-   
+     
+     <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('./service-worker.js')
+            .then(function(registration) {
+              console.log('ServiceWorker registrado com sucesso:', registration.scope);
+            }, function(err) {
+              console.error('Falha ao registrar o ServiceWorker:', err);
+            });
+        });
+      }
+    </script>
+    
+    
+    
 </body>
 
 </html>

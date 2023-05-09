@@ -6,6 +6,8 @@ let Sneaker = require('../model/Shoes');
 
 // api to add sneaker
 sneakerRoutes.route('/add').post(function (req, res) {
+  console.log("AQUI!")
+  console.log(req.body)
   let sneaker = new Sneaker(req.body);
   sneaker.save()
   .then(sneaker => {
