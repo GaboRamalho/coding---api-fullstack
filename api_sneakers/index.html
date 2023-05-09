@@ -5,12 +5,13 @@
   <title>Sneakers CRUD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="manifest.json" />
-  <link rel="serviceWorker" href="service-worker.js">
   <link rel="stylesheet" type="text/css" href="style.css" />
+
 
   <!--Coisa do Lighthouse-->
   <link rel="apple-touch-icon" href="/assets/img/logo-cookie.png">
   <meta name="theme-color" content="#317EFB" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -73,19 +74,38 @@
         });
       </script>
      
+
+
      <script>
+      let newWorker;
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('./service-worker.js')
-            .then(function(registration) {
-              console.log('ServiceWorker registrado com sucesso:', registration.scope);
-            }, function(err) {
-              console.error('Falha ao registrar o ServiceWorker:', err);
-            });
-        });
+          navigator.serviceWorker.register('./service-worker.js').then(reg => {
+              reg.addEventListener('updatefound', () => {
+                  // A wild service worker has appeared in reg.installing!
+                  newWorker = reg.installing;
+                  newWorker.addEventListener('statechange', () => {
+                      // Has network.state changed?
+                      switch (newWorker.state) {
+                          case 'installed':
+                              if (navigator.serviceWorker.controller) {
+                                  // new update available
+                                  showUpdateBar();
+                              }
+                              // No update available
+                              break;
+                      }
+                  });
+              });
+          });
+          let refreshing;
+          navigator.serviceWorker.addEventListener('controllerchange', function () {
+              if (refreshing) return;
+              window.location.reload();
+              refreshing = true;
+          });
       }
-    </script>
-    
+  </script>
+  
     
     
 </body>
