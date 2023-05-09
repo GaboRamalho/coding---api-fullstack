@@ -27,18 +27,27 @@
 <body>
 
   <div class="jumbotron text-center">
-    <h1>Busca de Filmes</h1>
+    <h1>Sneakers registration</h1>
 
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
 
           <form>
-            <input id="nameMovie" class="form-control" type="text" placeholder="Digite o nome do filme...">
+            <input id="nameMovie" class="form-control" type="text" placeholder="Name">
             <br />
             <a class="btn btn-primary" onclick="searchMovies(document.getElementById('nameMovie').value)">Buscar</a>
           </form>
-
+          <form>
+            <input id="nameMovie" class="form-control" type="text" placeholder="Brand">
+            <br />
+            <a class="btn btn-primary" onclick="searchMovies(document.getElementById('nameMovie').value)">Buscar</a>
+          </form>
+          <form>
+            <input id="nameMovie" class="form-control" type="text" placeholder="Size">
+            <br />
+            <a class="btn btn-primary" onclick="searchMovies(document.getElementById('nameMovie').value)">Buscar</a>
+          </form>
         </div>
       </div>
     </div>
@@ -55,6 +64,7 @@
     </div>
   </div>
   <br />
+  <script src="simple_server/app.js"></script>
 
   <script>
     function searchMovies(movie) {
