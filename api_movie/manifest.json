@@ -10,8 +10,6 @@
     "short_name": "SNKCRUD",
     "start_url": "index.html",
     "theme_color": "#F8F8FF",
-    "screenshots": [0],
-    "shortcuts": [0],
     "lang": "pt",
     "prefer_related_applications": false
   }
