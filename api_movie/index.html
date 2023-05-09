@@ -1,94 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-br">
 
 <head>
-  <title>Sneaker Registration</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <meta charset="UTF-8" />
+  <title>Sneakers CRUD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>navigator.serviceWorker.register("service-worker.js")</script>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
 
-  <!-- Hotjar Tracking Code for https://pedantic-clarke-ebf939.netlify.app/ -->
-	<script>
-		(function(h,o,t,j,a,r){
-			h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-			h._hjSettings={hjid:2434567,hjsv:6};
-			a=o.getElementsByTagName('head')[0];
-			r=o.createElement('script');r.async=1;
-			r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-			a.appendChild(r);
-		})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-	</script>
-  
+  <!--Coisa do Lighthouse-->
+  <link rel="apple-touch-icon" href="/assets/img/logo-cookie.png">
+  <meta name="theme-color" content="#317EFB" />
 </head>
 
 <body>
-
-  <div class="jumbotron text-center">
-    <h1>Sneaker Registration</h1>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-
-          <form>
-            <input id="nameMovie" class="form-control" type="text" placeholder="Name">
-            <br />
-          </form>
-          <form>
-            <input id="nameMovie" class="form-control" type="text" placeholder="Brand">
-            <br />
-          </form>
-          <form>
-            <input id="nameMovie" class="form-control" type="text" placeholder="Size">
-            <br />
-            <a class="btn btn-primary" onclick="searchMovies(document.getElementById('nameMovie').value)">Submit</a>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
-    <div class="row">
-      <div class="col-sm-12">
-        <h3 id='title'></h3>
-        <p id='description'></p>
-        <p id='imdb'></p>
-        <img id="my_image" class="img-fluid">
+    <a class="links" id="paracadastro"></a>
+    <a class="links" id="paralogin"></a>
+
+    <div class="content">
+      <!--FORMULÁRIO DE CADASTRO-->
+      <div id="cadastro">
+        <form method="post" action="">
+          <h1>Sneaker Registration</h1>
+
+          <p>
+            <label for="name">name</label>
+            <input id="name" name="name" required="required" type="text" placeholder="Model" />
+          </p>
+
+          <p>
+            <label for="brand">brand</label>
+            <input id="brand" name="brand" required="required" type="text" placeholder="'Adidas'" />
+          </p>
+
+          <p>
+            <label for="size">size</label>
+            <input id="size" name="size" required="required" type="text" placeholder="ex. 1234" />
+          </p>
+          <p>
+            <button id="submit-button" type="button">Submit</button>
+          </p>
+
+
+        </form>
+
       </div>
-    </div>
-  </div>
-  <br />
-  <script src="simple_server/app.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <script>
-    function searchMovies(movie) {
-      $('#title').empty();
-      $('#description').empty();
-      $('#imdb').empty();
-      $("#my_image").empty();
+      <script src="scripts-api/criar.js"></script>
+    <!-- 
+      <script>
+        const form = document.querySelector('form');
+        const button = document.querySelector('#cadastro-button');
 
-      var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://www.omdbapi.com/?t=" + movie + "&apikey=1993e977",
-        "method": "GET"
-      }
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
 
-      $.ajax(settings).done(function (response) {
-        console.log(response);
-        $('#title').append(response.Title + "(" + response.Year + ")");
-        $("#my_image").attr("src", response.Poster);
-        $('#description').append(response.Plot);
-        $('#imdb').append("IMDB: " + response.imdbRating);
-      });
+          const nome = document.querySelector('#nome_cad').value;
+          const email = document.querySelector('#email_cad').value;
+          const senha = document.querySelector('#senha_cad').value;
 
-    }
-  </script>
-
+          axios.post('http://localhost:5000/cadastro', { nome, email, senha })
+            .then(response => {
+              console.log(response.data);
+              alert('Dados enviados com sucesso!');
+            })
+            .catch(error => {
+              alert('Ocorreu um erro ao enviar os dados!');
+              console.log(error);
+            });
+        });
+      </script>
+    -->  
+   
 </body>
 
 </html>
