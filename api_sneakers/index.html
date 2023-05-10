@@ -15,26 +15,23 @@
 </head>
 
 <body>
-  <div class="container">
+  <div >
     <a class="links" id="paracadastro"></a>
     <a class="links" id="paralogin"></a>
 
     <div class="content">
       <!--FORMULÁRIO DE CADASTRO-->
-      <div id="cadastro">
+      <div class="teste" id="cadastro">
         <form method="post" action="">
           <h1>Sneaker Registration</h1>
-
           <p>
             <label for="name">name</label>
             <input id="name" name="name" required="required" type="text" placeholder="Model" />
           </p>
-
           <p>
             <label for="brand">brand</label>
             <input id="brand" name="brand" required="required" type="text" placeholder="'Adidas'" />
           </p>
-
           <p>
             <label for="size">size</label>
             <input id="size" name="size" required="required" type="text" placeholder="ex. 1234" />
@@ -42,15 +39,12 @@
           <p>
             <button id="submit-button" type="button">Submit</button>
           </p>
-
-
         </form>
-
       </div>
       <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
+    </div>
     <!-- <script src="scripts-api/criar.js"></script> -->
-    
+  </div>
       <script>
         const form = document.querySelector('form');
         const button = document.querySelector('#submit-button');

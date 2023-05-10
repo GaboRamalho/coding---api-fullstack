@@ -1,9 +1,9 @@
 {
-  "name": "PRVNTV",
-  "short_name": "PRVNTV",
+  "name": "API-CRUD",
+  "short_name": "API-CRUD",
   "start_url": "index.html",
   "background_color": "#ffffff",
-  "description": "Aplicação para monitoramento e análise de dados de máquina industriais.",
+  "description": "CRUP API, para consumir uma rota de post.",
   "dir": "ltr",
   "display": "standalone",
   "orientation": "any",

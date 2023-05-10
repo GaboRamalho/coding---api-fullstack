@@ -1,10 +1,9 @@
 /* CSS reset */
 *, *:before, *:after { 
-  margin:0;
-  padding:0;
+
   font-family: Arial,sans-serif;
 }
- 
+
 /* remove a linha dos links */
 a{
   text-decoration: none;
@@ -14,13 +13,21 @@ a{
 a.links{
   display: none;
 }
+.teste{
+  width: 200px;
+}
+
+.container{
+ width: 100%;
+}
 
 /*Criando a class content*/
 .content{
-  width: 500px;
+  width: 400px;
   min-height: 560px;    
   margin: 0px auto;
-  position: relative;   
+  position: relative; 
+
 }
 
 /* Lighthouse indicação*/

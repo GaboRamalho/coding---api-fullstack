@@ -1,43 +1,31 @@
-const cacheName = 'sneakers-cache-v1';
-const urlsToCache = [
-  '/',
-  'index.html',
-  'style.css',
-  'manifest.json'
-];
+var cacheName = 'API-V1';
 
-self.addEventListener('install', (event) => {
+self.addEventListener('install', event => {
+
+  self.skipWaiting();
+
   event.waitUntil(
     caches.open(cacheName)
-      .then((cache) => {
-        console.log('Cache aberto');
-        return cache.addAll(urlsToCache);
-      })
+      .then(cache => cache.addAll([
+        './index.html',
+        './style.css',
+      ]))
   );
 });
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => {
-        if (response) {
-          return response;
-        }
+self.addEventListener('message', function (event) {
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
 
-        return fetch(event.request)
-          .then((response) => {
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            const responseToCache = response.clone();
-            caches.open(cacheName)
-              .then((cache) => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
-          });
-      })
-  );
+self.addEventListener('fetch', function (event) {
+  //Atualizacao internet
+  event.respondWith(async function () {
+     try {
+       return await fetch(event.request);
+     } catch (err) {
+       return caches.match(event.request);
+     }
+   }());
 });
